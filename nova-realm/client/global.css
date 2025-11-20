@@ -1,0 +1,244 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme with Glassmorphism design
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+  */
+  :root {
+    /* Light mode - Blue gradient color scheme */
+    --background: 210 40% 98%;
+    --foreground: 213 13% 25%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 213 13% 25%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 13% 25%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 90% 56%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 190 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 213 13% 25%;
+
+    --border: 210 40% 91.4%;
+    --input: 210 40% 96%;
+    --ring: 210 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Glassmorphism effect variables */
+    --glass-opacity: 0.1;
+    --glass-blur: 10px;
+    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 213 13% 25%;
+    --sidebar-primary: 210 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 91.4%;
+    --sidebar-accent-foreground: 210 100% 50%;
+    --sidebar-border: 210 40% 91.4%;
+    --sidebar-ring: 210 100% 50%;
+  }
+
+  .dark {
+    /* Dark mode - Blue gradient color scheme */
+    --background: 213 27% 12%;
+    --foreground: 210 40% 98%;
+
+    --card: 213 27% 17%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 213 27% 17%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 220 90% 56%;
+    --primary-foreground: 213 27% 12%;
+
+    --secondary: 210 100% 50%;
+    --secondary-foreground: 213 27% 12%;
+
+    --muted: 213 27% 25%;
+    --muted-foreground: 210 20% 65.1%;
+
+    --accent: 190 100% 50%;
+    --accent-foreground: 213 27% 12%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 213 27% 12%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 213 27% 12%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 213 27% 12%;
+
+    --border: 213 27% 25%;
+    --input: 213 27% 22%;
+    --ring: 220 90% 56%;
+
+    --glass-opacity: 0.15;
+    --glass-blur: 10px;
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    --sidebar-background: 213 27% 12%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 220 90% 56%;
+    --sidebar-primary-foreground: 213 27% 12%;
+    --sidebar-accent: 213 27% 25%;
+    --sidebar-accent-foreground: 220 90% 56%;
+    --sidebar-border: 213 27% 25%;
+    --sidebar-ring: 220 90% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  h1 {
+    @apply text-3xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-2xl font-bold tracking-tight;
+  }
+
+  h3 {
+    @apply text-lg font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Glassmorphism card styles */
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl;
+    box-shadow: var(--glass-shadow);
+  }
+
+  .dark .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+
+  /* Glassmorphism button styles */
+  .glass-button {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300;
+    @apply bg-gradient-to-r from-blue-500 to-cyan-500;
+    @apply text-white shadow-lg;
+    @apply hover:shadow-xl hover:scale-105;
+    @apply active:scale-95;
+  }
+
+  /* Glassmorphism input styles */
+  .glass-input {
+    @apply w-full px-4 py-2 rounded-lg;
+    @apply bg-white/10 border border-white/20;
+    @apply text-foreground placeholder-muted-foreground;
+    @apply transition-all duration-300;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+  }
+
+  .dark .glass-input {
+    @apply bg-white/5 border border-white/10;
+  }
+
+  /* Animated gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-500 via-blue-600 to-cyan-500;
+    @apply bg-clip-text text-transparent;
+  }
+
+  /* Color-coded status */
+  .status-expired {
+    @apply text-red-600 dark:text-red-400;
+  }
+
+  .status-expiring-soon {
+    @apply text-yellow-600 dark:text-yellow-400;
+  }
+
+  .status-valid {
+    @apply text-green-600 dark:text-green-400;
+  }
+
+  /* Animations */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-in-out;
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.3s ease-in-out;
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+}
